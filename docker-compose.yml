@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  app:
+    build: docker/app
+    user: node
+    container_name: c-twitch-only-audio
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      - FFMPEG_PATH=/usr/bin/ffmpeg
+      - FFPROBE_PATH=/usr/bin/ffprobe
+    volumes:
+      - ./:/home/node/app
+    command: "npm run start:dev"
+    ports:
+      - 4000:4000

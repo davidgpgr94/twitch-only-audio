@@ -1,3 +1,10 @@
-const twitch = require('twitch-m3u8');
+require('dotenv').config();
 
-twitch.getVod('1063931679').then(console.log);
+const { createContainer } = require('./container');
+const startApiServer = require('./infrastructure/server/server');
+
+(async () => {
+  const container = await createContainer();
+
+  startApiServer({ container });
+})();

@@ -1,0 +1,5 @@
+build:
+  docker:
+    app: docker/app/Dockerfile
+run:
+  app: npm start

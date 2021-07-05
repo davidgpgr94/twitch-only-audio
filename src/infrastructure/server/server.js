@@ -11,11 +11,15 @@ module.exports = ({ container }) => {
 
   const router = express.Router();
 
-  app.use('/api/health-check', (req, res) => {
+  app.use('/favicon.ico', (req, res) => {
+    return res.status(204).send();
+  });
+
+  app.use('/health-check', (req, res) => {
     res.status(200).json({ msg: 'ok' });
   });
 
-  app.use('/api', twitchAudioEndpoint({ router, container }));
+  app.use('/', twitchAudioEndpoint({ router, container }));
 
   app.use('/*', (req, res, next) => {
     return res.status(404).send({ error: 'Route not found' });

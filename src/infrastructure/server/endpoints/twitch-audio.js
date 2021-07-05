@@ -1,7 +1,7 @@
 const GetTwitchVodAudioCommand = require('../../../application/get-twitch-vod-audio/get-twitch-vod-audio-command');
 
 module.exports = ({ router, container }) => {
-  router.get('/twitch-audio/:vodId', async (req, res, next) => {
+  router.get('/:vodId', async (req, res, next) => {
     const { vodId } = req.params;
     console.log(`Getting audio from the video ${vodId}...`);
 

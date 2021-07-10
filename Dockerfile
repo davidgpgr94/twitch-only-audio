@@ -5,11 +5,16 @@ RUN apk add --no-cache ffmpeg
 ENV FFMPEG_PATH=/usr/bin/ffmpeg
 ENV FFPROBE_PATH=/usr/bin/ffprobe
 
-USER node
-WORKDIR /home/node
+WORKDIR /app
 
 COPY package*.json .
 RUN npm install
 COPY src ./src
+COPY pm2.json .
 
-CMD ["npm", "start"]
+RUN npm install pm2 -g
+
+# Expose ports needed to use Keymetrics.io
+EXPOSE 80 443 43554
+
+CMD ["pm2-runtime", "start", "pm2.json"]

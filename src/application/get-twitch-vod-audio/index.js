@@ -9,9 +9,12 @@ class GetTwitchVodAudio {
     this.videoConverter = videoConverter;
   }
 
-  async getAudio({ vodId }) {
+  /**
+   * @throws {BeginAudioInvalidFormat}
+   */
+  async getAudio({ vodId, begin }) {
     const vodUrl = await this.twitchClient.getAudioVodUrl(vodId);
-    const videoStream = this.audioStream.createFromUrl(vodUrl);
+    const videoStream = this.audioStream.createFromUrl(vodUrl, begin);
 
     const audioStream = this.videoConverter.toMp3Stream(videoStream);
 

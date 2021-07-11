@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
+    "start:heroku": "pm2-runtime start pm2.json --env production",
     "start:dev": "nodemon src/index.js"
   },
   "keywords": [],

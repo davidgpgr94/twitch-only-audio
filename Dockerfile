@@ -12,9 +12,10 @@ RUN npm install
 COPY src ./src
 COPY pm2.json .
 
-RUN npm install pm2 -g
+RUN npm install pm2
 
 # Expose ports needed to use Keymetrics.io
 EXPOSE 80 443 43554
 
-CMD ["pm2-runtime", "start", "pm2.json"]
+# CMD ["pm2-runtime", "start", "pm2.json"]
+CMD ["npm", "run", "start:heroku"]
